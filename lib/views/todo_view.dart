@@ -40,10 +40,8 @@ class TodoViewState extends State<TodoView> {
       padding: const EdgeInsets.all(8),
       itemCount: tasks.length,
       itemBuilder: (context, index) {
-        final task = tasks[index];
-
         return TodoTile(
-          task: task,
+          task: tasks[index],
           onDelete: () => _deleteTask(index),
         );
       },
