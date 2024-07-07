@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../models/task_model.dart';
+
 class TodoTile extends StatelessWidget {
   const TodoTile({
     super.key,
-    required this.title,
-    required this.subtitle,
     required this.onDelete,
+    required this.task,
   });
 
-  final String title;
-  final String subtitle;
+  final Task task;
   final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        title,
+        task.title,
         style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
@@ -25,7 +25,7 @@ class TodoTile extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        subtitle,
+        task.subtitle,
         style: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,
@@ -48,14 +48,17 @@ class TodoTile extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Delete Task'),
-          content: const Text('Are you sure you want to delete this task?'),
+          content: Text('Are you sure you want to delete "${task.title}"?'),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: const Text('Cancel'),
             ),
             TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                onDelete();
+                Navigator.of(context).pop();
+              },
               child: const Text('Delete'),
             ),
           ],
