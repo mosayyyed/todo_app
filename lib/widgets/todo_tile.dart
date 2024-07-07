@@ -15,6 +15,7 @@ class TodoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       title: Text(
         task.title,
         style: const TextStyle(
